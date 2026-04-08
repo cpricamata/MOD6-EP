@@ -1,0 +1,43 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+
+{% block title %}View Water Bottles{% endblock %}
+
+{% block content %}
+            {% block thead_categories %}
+            <tr>
+                <th class="table-dark" scope="col"> SKU </th>
+                <th class="table-dark" scope="col"> Brand </th>
+                <th class="table-dark" scope="col"> Cost </th>
+                <th class="table-dark" scope="col"> Size </th>
+                <th class="table-dark" scope="col"> Mouth Size </th>
+                <th class="table-dark" scope="col"> Color </th>
+                <th class="table-dark" scope="col"> Supplier </th>
+                <th class="table-dark" scope="col"> Qty </th>    
+                <th class="table-dark" scope="col"> </th>    
+            </tr>
+            {% endblock %}
+        </thead>
+        <tbody>
+            {% block tbody_data %}
+                {% for w in wbs %}
+                <tr>
+                    <td> {{ w.sku }} </td>
+                    <td> {{ w.brand }} </td>
+                    <td> {{ w.cost }} </td>
+                    <td> {{ w.size }} </td>
+                    <td> {{ w.mouth_size }} </td>
+                    <td> {{ w.color }} </td>
+                    <td> {{ w.supplied_by }} </td>
+                    <td> {{ w.current_quantity }} </td>
+                    <td> <div class="d-flex justify-content-center"> <button type="button" class="btn btn-sm btn-dark">Details</button> </div> </td>
+                </tr>
+                {% endfor %}
+            {% endblock %}
+
+        </tbody>
+    </table>
+</div>            
+</div>
+{% endblock %}
+{% load static %}

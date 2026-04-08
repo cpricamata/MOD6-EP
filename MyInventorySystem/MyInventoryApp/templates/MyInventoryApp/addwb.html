@@ -1,0 +1,101 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+
+{% block heading_static%}
+<style> 
+    th{
+        text-align:center;
+    }
+    td{
+        font-size:12px;
+    }
+</style> <!--W3Schools. (n.d.). Style Tag. https://www.w3schools.com/tags/tag_style.asp-->
+{% endblock %}
+
+{% block navigation %}
+<ul>
+    <li><a href="{% url 'waterbottle' %}" > Waterbottles </a></li>
+    <li><a href="{% url 'supplier' %}" > Suppliers </a></li>
+</ul>
+{% endblock %}
+
+{% block content%}
+<ul class="list-group"> <!-- ref: Bootstrap. (n.d.-e). List group. https://getbootstrap.com/docs/5.0/components/list-group/-->
+    <li class="list-group-item d-flex justify-content-center"> <h5 class="mt-2"> Add a water bottle here: </h5></li>
+    <li class="list-group-item pt-0"> 
+        <label for="skuFormComponent" class="col-form-label">ID </label> 
+        <input type="text" id="skuFormComponent" class="form-control" aria-describedby="IDinputbox"> 
+        <span id="skuFormComponent" class="form-text text-break">Must consist of 1 letter, 1 number, 1 letter.</span> 
+        </li> 
+    <li class="list-group-item pt-0"> 
+        <label for="brandnameFormComponent" class="col-form-label">Brand Name </label> 
+        <select class="form-select" aria-label="Select brand name"> 
+            <option selected>Select</option> 
+            <option value="1">Bon Flask</option> 
+            <option value="2">L'eau</option> 
+            <option value="3">Super Bottle</option> 
+            <option value="4">Hydro Flask</option> 
+            <option value="5">Kleen Kanteen</option> 
+            <option value="6">Nalgene</option> 
+            <option value="7">Thermos</option> 
+            <option value="8">Other</option> </select> 
+        <label for="brandnameFormComponentB" class="col-form-label">If you selected other, please indicate: </label> 
+        <input type="text" id="brandnameFormComponentB" class="form-control" aria-describedby="Custom brand name"> 
+        <span id="brandnameFormComponentB" class="form-text text-break">Input new brand name.</span> 
+    </li> 
+    <li class="list-group-item pt-0"> 
+        <label for="colorFormComponent" class="col-form-label">Color </label> 
+        <select class="form-select" aria-label="Select color"> 
+            <option selected>Select</option> <option value="1">White</option> 
+            <option value="2">Black</option> <option value="3">Blue</option> 
+            <option value="4">Yellow</option> <option value="5">Green</option> 
+            <option value="6">Red</option> 
+            <option value="7">Transparent</option> 
+        </select> 
+    </li> 
+    <li class="list-group-item pt-0"> 
+        <label for="sizeFormComponent" class="col-form-label">Size </label> 
+        <input type="number" id="sizeFormComponent" class="form-control" aria-describedby="sizeinputbox"> 
+        <label for="sizeFormComponent" class="col-form-label">Unit </label> 
+        <select class="form-select" aria-label="Select unit"> 
+            <option selected>Select</option> 
+            <option value="1">Oz</option> 
+            <option value="2">Liter</option> 
+        </select>
+    </li>
+    <li class="list-group-item pt-0"> 
+        <label for="mouthSizeFormComponent" class="col-form-label">Mouth Size </label> 
+            <select class="form-select" aria-label="Select mouth size"> 
+            <option selected>Select</option> 
+            <option value="1">Standard Mouth</option> 
+            <option value="2">Wide Mouth</option> 
+            </select> 
+    </li>
+    <li class="list-group-item pt-0"> 
+        <label for="supplierFormComponent" class="col-form-label">Supplier </label> 
+            <select class="form-select" aria-label="Select supplier"> 
+            <option selected>Select</option> 
+            <option value="1">Bucky, Inc.</option> 
+            <option value="2">Meister, Inc.</option> 
+            <option value="3">Sailfish, Inc.</option> 
+            <option value="4">Abbott, Inc.</option> 
+            <option value="5">MGC Inc.</option> 
+            <option value="6">BF Inc.</option>
+            </select> 
+    </li>
+    <li class="list-group-item pt-0"> 
+        <label for="costFormComponent" class="col-form-label">Cost</label> 
+        <input type="number" id="costFormComponent" class="form-control" aria-describedby="costinputbox"> 
+    </li>
+    <li class="list-group-item pt-0"> 
+        <label for="stockFormComponent" class="col-form-label">Stock</label> 
+        <input type="number" id="stockFormComponent" class="form-control" aria-describedby="stockinputbox"> 
+    </li>
+    <li class="list-group-item d-grid p-3"> 
+        <button type="button" class="btn btn-sm btn-primary">Submit</button> 
+    </li>
+    </ul>
+
+{% endblock %}
+
+{}
