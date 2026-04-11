@@ -40,3 +40,7 @@ def update_dish(request, pk):
 def manage_account(request, pk):
     d = Account
     return render(request, 'tapasapp/manage_account.html', {'account':d,'pk':pk})
+
+def change_password(request, pk):
+    d = Account
+    return render(request, 'tapasapp/change_password.html', {'account':d,'pk':pk})
