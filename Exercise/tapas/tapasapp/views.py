@@ -73,9 +73,9 @@ def base_view(request):
     return render(request, 'base.html')
 
 def manage_account(request, pk):
-    d = Account
-    return render(request, 'tapasapp/manage_account.html', {'account':d,'pk':pk})
+    d = get_object_or_404(Account, pk=pk)
+    return render(request, 'tapasapp/manage_account.html', {'d':d})
 
 def change_password(request, pk):
-    d = Account
-    return render(request, 'tapasapp/change_password.html', {'account':d,'pk':pk})
+    d = get_object_or_404(Account, pk=pk)
+    return render(request, 'tapasapp/change_password.html', {'d':d})
