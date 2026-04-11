@@ -10,4 +10,14 @@ class Dish(models.Model):
 
     def __str__(self):
         return str(self.pk) + ": " + self.name
-    
+ 
+class Account(models.Model):
+    userid = models.IntegerField()
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+
+    def getUsername(self):
+        return self.username
+
+    def getPassword(self):
+        return self.password

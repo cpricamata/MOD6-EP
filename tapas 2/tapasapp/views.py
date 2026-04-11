@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Dish 
+from .models import Account
 
 # Create your views here.
 
@@ -35,3 +36,7 @@ def update_dish(request, pk):
     else:
         d = get_object_or_404(Dish, pk=pk)
         return render(request, 'tapasapp/update_menu.html', {'d':d})
+
+def manage_account(request, pk):
+    d = Account
+    return render(request, 'tapasapp/manage_account.html', {'account':d,'pk':pk})

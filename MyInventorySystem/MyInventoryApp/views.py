@@ -25,7 +25,5 @@ def view_bottles(request):
     WaterBottle_objects = WaterBottle.objects.all()
     return render(request, 'MyInventoryApp/view_bottles.html', {'wbs':WaterBottle_objects})
 
-def add_bottle(request):
-    return render(request, 'MyInventoryApp/add_bottle.html')
 
 
