@@ -14,7 +14,7 @@ def login_view(request):
         user = Account.objects.filter(username=username, password=password).first()
 
         if user:
-            return redirect('better_menu')
+            return redirect('basic_list', pk=user.pk)
         else:
             return render(request, 'tapasapp/login.html', {
                 'error': 'Invalid login'
@@ -29,13 +29,17 @@ def signup_view(request):
 
         if Account.objects.filter(username=username).exists():
             return render(request, 'tapasapp/signup.html', {
-                'error': 'Username already exists'
+                'error': 'Account already exists'
             })
 
         Account.objects.create(username=username, password=password)
         return redirect('login')
 
     return render(request, 'tapasapp/signup.html')
+
+def basic_list(request, pk):
+    d = get_object_or_404(Account, pk=pk)
+    return render(request, 'tapasapp/basic_list.html', {'d': d})
 
 def better_menu(request):
     dish_objects = Dish.objects.all()
@@ -73,9 +77,40 @@ def base_view(request):
     return render(request, 'base.html')
 
 def manage_account(request, pk):
-    d = Account
-    return render(request, 'tapasapp/manage_account.html', {'account':d,'pk':pk})
+    d = get_object_or_404(Account, pk=pk)
+    return render(request, 'tapasapp/manage_account.html', {'d':d})
 
 def change_password(request, pk):
-    d = Account
-    return render(request, 'tapasapp/change_password.html', {'account':d,'pk':pk})
+    d = get_object_or_404(Account, pk=pk)
+
+    if request.method == "POST":
+        current = request.POST.get('current_password')
+        new = request.POST.get('new_password')
+        confirm = request.POST.get('confirm_password')
+
+        if current != d.password:
+            return render(request, 'tapasapp/change_password.html', {
+                'd': d,
+                'error': 'Incorrect current password'
+            })
+
+        if new != confirm:
+            return render(request, 'tapasapp/change_password.html', {
+                'd': d,
+                'error': 'Passwords do not match'
+            })
+
+        d.password = new
+        d.save()
+
+        return redirect('manage_account', pk=d.pk)
+
+    return render(request, 'tapasapp/change_password.html', {'d': d})
+
+def delete_account(request, pk):
+    d = get_object_or_404(Account, pk=pk)
+    d.delete()
+
+    return render(request, 'tapasapp/login.html', {
+        'message': 'Account successfully deleted!'
+    })
