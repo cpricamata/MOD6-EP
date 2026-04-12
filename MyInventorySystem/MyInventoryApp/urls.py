@@ -25,7 +25,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path("admin/", admin.site.urls),
     path('base/', views.base, name='base'),
-    path('add_bottles',views.addwb, name="addwb"),
+    path('add_bottle',views.addwb, name="addwb"),
     path('view_bottles',views.waterbottle, name="waterbottle"),
     path('view_supplier',views.supplier, name="supplier"),
 ]
