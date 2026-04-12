@@ -28,4 +28,7 @@ urlpatterns = [
     path('add_bottle',views.addwb, name="addwb"),
     path('view_bottles',views.waterbottle, name="waterbottle"),
     path('view_supplier',views.supplier, name="supplier"),
+    path('manage_account/<int:pk>/', views.manage_account, name='manage_account'),
+    path('change_password/<int:pk>/', views.change_password, name='change_password'),
+    path('delete_account/<int:pk>/', views.delete_account, name='delete_account'),
 ]
