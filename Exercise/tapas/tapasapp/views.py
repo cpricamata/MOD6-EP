@@ -14,7 +14,7 @@ def login_view(request):
         user = Account.objects.filter(username=username, password=password).first()
 
         if user:
-            return redirect('better_menu', pk=user.pk)
+            return redirect('basic_list', pk=user.pk)
         else:
             return render(request, 'tapasapp/login.html', {
                 'error': 'Invalid login'
@@ -36,6 +36,10 @@ def signup_view(request):
         return redirect('login')
 
     return render(request, 'tapasapp/signup.html')
+
+def basic_list(request, pk):
+    d = get_object_or_404(Account, pk=pk)
+    return render(request, 'tapasapp/basic_list.html', {'d': d})
 
 def better_menu(request):
     dish_objects = Dish.objects.all()
