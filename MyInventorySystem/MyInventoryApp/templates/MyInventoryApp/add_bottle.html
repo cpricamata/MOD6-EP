@@ -1,63 +1,83 @@
-{% extends 'MyInventoryApp/base.html' %}
+{% extends "MyInventoryApp/base.html" %}
 {% block content %}
 
 <div class="container mt-4">
-    <h2>Add Water Bottle</h2>
 
-    <form method="POST">
-        {% csrf_token %}
-
-        <div class="mb-2">
-            <label>SKU</label>
-            <input type="text" name="sku" class="form-control" required>
+    <!-- header -->
+    <div class="row mb-2 text-center">
+        <div class="pb-2">
+            <h2>Add Water Bottle</h2>
         </div>
+        <hr>
+    </div>
 
-        <div class="mb-2">
-            <label>Brand</label>
-            <input type="text" name="brand" class="form-control" required>
+    <!-- form -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 border p-4 shadow-sm rounded">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">SKU</label>
+                    <input type="text" name="sku" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Brand</label>
+                    <input type="text" name="brand" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Size</label>
+                    <input type="number" name="size" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Cost</label>
+                    <input type="number" name="cost" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Mouth Size</label>
+                    <select name="mouth_size" class="form-select" required>
+                        <option disabled selected>Select Mouth Size</option>
+                        <option value="Wide Mouth">Wide Mouth</option>
+                        <option value="Standard Mouth">Standard Mouth</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Color</label>
+                    <input type="text" name="color" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Supplier</label>
+                    <select name="supplier" class="form-select" required>
+                        {% for s in suppliers %}
+                            <option value="{{ s.id }}">{{ s.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-dark fs-6 mb-1">Quantity</label>
+                    <input type="number" name="qty" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mb-2">
+                    Add Water Bottle
+                </button>
+
+                <a href="{% url 'view_supplier' %}" class="btn btn-secondary w-100">
+                    Cancel
+                </a>
+
+            </form>
+
         </div>
-
-        <div class="mb-2">
-            <label>Cost</label>
-            <input type="number" name="cost" class="form-control" required>
-        </div>
-
-        <div class="mb-2">
-            <label>Size</label>
-            <input type="text" name="size" class="form-control" required>
-        </div>
-
-        <div class="mb-2">
-            <label>Mouth Size</label>
-            <input type="text" name="mouth_size" class="form-control" required>
-        </div>
-
-        <div class="mb-2">
-            <label>Color</label>
-            <input type="text" name="color" class="form-control" required>
-        </div>
-
-        <div class="mb-2">
-            <label>Quantity</label>
-            <input type="number" name="qty" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label>Supplier</label>
-            <select name="supplier" class="form-control" required>
-                {% for s in suppliers %}
-                    <option value="{{ s.id }}">{{ s.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-success">Confirm</button>
-
-        <a href="{% url 'supplier' %}" class="btn btn-secondary">
-            Cancel
-        </a>
-
-    </form>
+    </div>
 </div>
 
 {% endblock %}
