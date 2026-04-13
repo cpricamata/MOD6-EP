@@ -39,18 +39,6 @@ def signup_view(request):
 def base(request):
     return render(request, 'MyInventoryApp/base.html')
 
-def supplier(request):
-    Supplier_objects = Supplier.objects.all()
-    return render(request, 'MyInventoryApp/supplier.html', {'suppliers':Supplier_objects})
-
-def waterbottle(request):
-    WaterBottle_objects = WaterBottle.objects.all()
-    return render(request, 'MyInventoryApp/waterbottle.html', {'wbs':WaterBottle_objects})
-
-def addwb(request): # can be deleted i think because there's already add_bottle
-    WaterBottle_objects = WaterBottle.objects.all()
-    return render(request, 'MyInventoryApp/addwb.html', {'wbs':WaterBottle_objects})
-
 def view_supplier(request):
     return render(request, 'MyInventoryApp/view_supplier.html')
 

@@ -4,21 +4,23 @@
 {% block title %}View Water Bottles{% endblock %}
 
 {% block content %}
-            {% block thead_categories %}
-            <tr>
-                <th class="table-dark" scope="col"> SKU </th>
-                <th class="table-dark" scope="col"> Brand </th>
-                <th class="table-dark" scope="col"> Cost </th>
-                <th class="table-dark" scope="col"> Size </th>
-                <th class="table-dark" scope="col"> Mouth Size </th>
-                <th class="table-dark" scope="col"> Color </th>
-                <th class="table-dark" scope="col"> Supplier </th>
-                <th class="table-dark" scope="col"> Qty </th>    
-                <th class="table-dark" scope="col"> </th>    
-            </tr>
-            {% endblock %}
-        </thead>
-        <tbody>
+
+<div class="table-responsive">
+        <table class="table table-dark table-striped columns table-bordered"> <!-- Bootstrap. (n.d.-g). Tables. https://getbootstrap.com/docs/5.3/content/tables/-->
+            <thead>
+                <tr>
+                    <th class="table-dark" scope="col"> SKU </th>
+                    <th class="table-dark" scope="col"> Brand </th>
+                    <th class="table-dark" scope="col"> Cost </th>
+                    <th class="table-dark" scope="col"> Size </th>
+                    <th class="table-dark" scope="col"> Mouth Size </th>
+                    <th class="table-dark" scope="col"> Color </th>
+                    <th class="table-dark" scope="col"> Supplier </th>
+                    <th class="table-dark" scope="col"> Qty </th>    
+                    <th class="table-dark" scope="col"> </th>    
+                </tr>
+                </thead>
+                <tbody>
             {% block tbody_data %}
                 {% for w in wbs %}
                 <tr>
@@ -36,7 +38,9 @@
             {% endblock %}
 
         </tbody>
-    </table>
+        </table>
+        </div>
+            
 </div>            
 </div>
 {% endblock %}
