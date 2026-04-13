@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import WaterBottle 
 from .models import Supplier 
 from .models import Account 
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 def login_view(request):
@@ -57,7 +58,7 @@ def view_bottles(request):
     WaterBottle_objects = WaterBottle.objects.all()
     return render(request, 'MyInventoryApp/view_bottles.html', {'wbs':WaterBottle_objects})
 
-def add_bottle(request, pk):
+def add_bottle(request):
     suppliers = Supplier.objects.all()
 
     if request.method == "POST":
@@ -77,22 +78,19 @@ def add_bottle(request, pk):
             size=size,
             mouth_size=mouth_size,
             color=color,
-            supplied_by_id=supplier_id,
+            supplied_by_id=supplier_id,   
             current_quantity=qty
         )
 
-        return redirect('view_supplier') 
+        return redirect('waterbottle')  
 
     return render(request, 'MyInventoryApp/add_bottle.html', {
-        'suppliers': suppliers,
-        'pk': pk
+        'suppliers': suppliers
     })
-
 
 def manage_account(request, pk):
     d = get_object_or_404(Account, pk=pk)
     return render(request, 'MyInventoryApp/manage_account.html', {'d': d})
-
 
 def change_password(request, pk):
     d = get_object_or_404(Account, pk=pk)
@@ -120,7 +118,6 @@ def change_password(request, pk):
         return redirect('manage_account', pk=d.pk)
 
     return render(request, 'MyInventoryApp/change_password.html', {'d': d})
-
 
 def delete_account(request, pk):
     d = get_object_or_404(Account, pk=pk)
