@@ -98,23 +98,23 @@ def change_password(request, pk):
     d = get_object_or_404(Account, pk=pk)
 
     if request.method == "POST":
-        current = request.POST.get('current_password')
-        new = request.POST.get('new_password')
-        confirm = request.POST.get('confirm_password')
+        current_pass = request.POST.get('current_password')
+        new_pass = request.POST.get('new_password')
+        confirm_pass = request.POST.get('confirm_password')
 
-        if current != d.password:
+        if current_pass != d.password:
             return render(request, 'MyInventoryApp/change_password.html', {
                 'd': d,
                 'error': 'Incorrect current password'
             })
 
-        if new != confirm:
+        if new_pass != confirm_pass:
             return render(request, 'MyInventoryApp/change_password.html', {
                 'd': d,
                 'error': 'Passwords do not match'
             })
 
-        d.password = new
+        d.password = new_pass
         d.save()
 
         return redirect('manage_account', pk=d.pk)
