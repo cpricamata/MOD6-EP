@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background-color:aliceblue;
 }
@@ -7,3 +8,14 @@ h1 {
     text-align:center;
     color:darkblue;
 }
+=======
+body {
+    background-color:aliceblue;
+}
+
+h1 {
+    font-family: Helvetica, Verdana, sans-serif;
+    text-align:center;
+    color:darkblue;
+}
+>>>>>>> fe0a9e5447c0f30c13efe909e7e789507cf83f70
