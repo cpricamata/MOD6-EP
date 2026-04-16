@@ -17,27 +17,34 @@
     <a href="{% url 'logout_view' %}" class="btn btn-danger">Logout</a>
 </div>
 
-{%block thead_categories%}
-    <th class="table-dark" scope="col"> Name </th>
-    <th class="table-dark" scope="col"> City </th>
-    <th class="table-dark" scope="col"> Country </th>
-    <th class="table-dark" scope="col"> Creation date </th>    
-    <th class="table-dark" scope="col"> Details </th>    
+<table class="table">
+    <thead>
+        <tr>
+            {%block thead_categories%}
+                <th class="table-dark" scope="col"> Name </th>
+                <th class="table-dark" scope="col"> City </th>
+                <th class="table-dark" scope="col"> Country </th>
+                <th class="table-dark" scope="col"> Creation date </th>    
+                <th class="table-dark" scope="col"> Details </th>    
+            {%endblock%}
 
-{%endblock%}
+        </tr>
+    </thead>
+    <tbody>
+    {%block tbody_data%}
+        {% for sd in s %}
+            <tr>
+                <td> {{ sd.name }} </td>
+                <td> {{ sd.city }} </td>
+                <td> {{ sd.country }} </td>
+                <td> {{ sd.created_at }} </td>
+                <td> <div class="d-flex justify-content-center"> <a href="{% url 'view_bottles' %}" class="btn btn-sm btn-dark">Details</a> </div> </td>
 
-{%block tbody_data%}
-{% for sd in s %}
-    <tr>
-        <td> {{ sd.name }} </td>
-        <td> {{ sd.city }} </td>
-        <td> {{ sd.country }} </td>
-        <td> {{ sd.created_at }} </td>
-        <td> <div class="d-flex justify-content-center"> <a href="{% url 'view_bottles' %}" class="btn btn-sm btn-dark">Details</a> </div> </td>
+            </tr>
+        {% endfor %}
+    {%endblock%}
+    </tbody>
 
-    </tr>
-{% endfor %}
-{%endblock%}
-
+</table>
 
 {% load static %}
