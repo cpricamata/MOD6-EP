@@ -3,6 +3,7 @@ from .models import Dish
 from django.shortcuts import render, redirect
 from .models import Account
 from django.contrib import messages
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -21,6 +22,11 @@ def login_view(request):
             })
 
     return render(request, 'tapasapp/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+#Source: https://docs.djangoproject.com/en/dev/topics/auth/default/
 
 def signup_view(request):
     if request.method == "POST":
