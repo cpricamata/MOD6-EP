@@ -1,0 +1,43 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+{%block title%}Suppliers{%endblock%}
+
+{%block heading%}Suppliers{%endblock%}
+
+
+{% block navigation %}
+<ul>
+    <li><a href="{% url 'view_bottles' %}" > Waterbottles </a></li>
+</ul>
+{% endblock %}
+
+<div class="mb-3">
+    <a href="{% url 'add_bottles' %}" class="btn btn-primary">Add Water Bottles</a>
+    <a href="{% url 'manage_account' pk=user.pk %}" class="btn btn-secondary">Manage Account</a>
+    <a href="{% url 'logout_view' %}" class="btn btn-danger">Logout</a>
+</div>
+
+{%block thead_categories%}
+    <th class="table-dark" scope="col"> Name </th>
+    <th class="table-dark" scope="col"> City </th>
+    <th class="table-dark" scope="col"> Country </th>
+    <th class="table-dark" scope="col"> Creation date </th>    
+    <th class="table-dark" scope="col"> Details </th>    
+
+{%endblock%}
+
+{%block tbody_data%}
+{% for sd in s %}
+    <tr>
+        <td> {{ sd.name }} </td>
+        <td> {{ sd.city }} </td>
+        <td> {{ sd.country }} </td>
+        <td> {{ sd.created_at }} </td>
+        <td> <div class="d-flex justify-content-center"> <a href="{% url 'view_bottles' %}" class="btn btn-sm btn-dark">Details</a> </div> </td>
+
+    </tr>
+{% endfor %}
+{%endblock%}
+
+
+{% load static %}

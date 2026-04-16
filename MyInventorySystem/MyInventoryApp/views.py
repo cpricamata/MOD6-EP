@@ -3,6 +3,7 @@ from .models import WaterBottle
 from .models import Supplier 
 from .models import Account 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import logout
 
 # Create your views here.
 def login_view(request):
@@ -20,6 +21,11 @@ def login_view(request):
             })
 
     return render(request, 'MyInventoryApp/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+#Source: https://docs.djangoproject.com/en/dev/topics/auth/default/
 
 def signup_view(request):
     if request.method == "POST":
@@ -40,11 +46,21 @@ def base(request):
     return render(request, 'MyInventoryApp/base.html')
 
 def view_supplier(request):
-    return render(request, 'MyInventoryApp/view_supplier.html')
+    suppliers = Supplier.objects.all()
+    return render(request, 'MyInventoryApp/view_supplier.html', {'s': suppliers})
+
+def view_bottle_details(request,pk):
+    bottle = get_object_or_404(WaterBottle, pk=pk)
+    return render(request, 'MyInventoryApp/view_bottle_details.html', {'wbs': bottle})
 
 def view_bottles(request):
     WaterBottle_objects = WaterBottle.objects.all()
     return render(request, 'MyInventoryApp/view_bottles.html', {'wbs':WaterBottle_objects})
+
+def delete_bottle(request,pk):
+    bottle = get_object_or_404(WaterBottle, pk=pk)
+    bottle.delete()
+    return redirect('view_bottles')
 
 def add_bottle(request):
     suppliers = Supplier.objects.all()
@@ -70,7 +86,7 @@ def add_bottle(request):
             current_quantity=qty
         )
 
-        return redirect('waterbottle')  
+        return redirect('view_supplier')  
 
     return render(request, 'MyInventoryApp/add_bottle.html', {
         'suppliers': suppliers

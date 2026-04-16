@@ -32,13 +32,15 @@
                     <td> {{ w.color }} </td>
                     <td> {{ w.supplied_by }} </td>
                     <td> {{ w.current_quantity }} </td>
-                    <td> <div class="d-flex justify-content-center"> <button type="button" class="btn btn-sm btn-dark">Details</button> </div> </td>
+                    <td> <div class="d-flex justify-content-center"> <a href="{% url 'view_bottle_details' pk=w.pk %}" class="btn btn-sm btn-dark">Details</a> </div> </td>
                 </tr>
                 {% endfor %}
             {% endblock %}
 
         </tbody>
         </table>
+        <a href="{% url 'view_supplier' %}" class="btn btn-secondary">Back to Suppliers</a>
+
         </div>
             
 </div>            

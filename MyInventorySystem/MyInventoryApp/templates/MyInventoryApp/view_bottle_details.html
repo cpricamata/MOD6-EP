@@ -8,8 +8,8 @@
 
 {% block navigation %}
 <ul>
-    <li><a href="{% url 'supplier' %}" > Suppliers </a></li>
-    <li><a href="{% url 'addwb' %}" > Add waterbottle </a></li>
+    <li><a href="{% url 'view_supplier' %}" > Suppliers </a></li>
+    <li><a href="{% url 'add_bottle' %}" > Add waterbottle </a></li>
 </ul>
 {% endblock %}
 
@@ -38,8 +38,13 @@
         <td> {{ w.supplied_by }} </td>
         <td> {{ w.current_quantity }} </td>
         <td> <div class="d-flex justify-content-center"> <button type="button" class="btn btn-sm btn-dark">Details</button> </div> </td>
+        <form action="{% url 'delete_bottle' pk=bottle.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    
     </tr>
     {% endfor %}
 {% endblock %}
-
+<a href="{% url 'view_bottles' %}" class="btn btn-secondary">Back</a>
 {% load static %}
