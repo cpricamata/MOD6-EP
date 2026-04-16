@@ -44,7 +44,7 @@ def signup_view(request):
     return render(request, 'tapasapp/signup.html')
 
 def basic_list(request, pk):
-    d = get_object_or_404(Account, pk=pk)
+    d = get_object_or_404(Dish, pk=pk)
     return render(request, 'tapasapp/basic_list.html', {'d': d})
 
 def better_menu(request):
