@@ -30,18 +30,18 @@
 
                 <div class="mb-3">
                     <label class="text-dark fs-6 mb-1">Size</label>
-                    <input type="number" name="size" class="form-control" required>
+                    <input type="number" min="1" name="size" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="text-dark fs-6 mb-1">Cost</label>
-                    <input type="number" name="cost" class="form-control" required>
+                    <input type="number" min="0" name="cost" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="text-dark fs-6 mb-1">Mouth Size</label>
                     <select name="mouth_size" class="form-select" required>
-                        <option disabled selected>Select Mouth Size</option>
+                        <option value="" disabled selected>Select Mouth Size</option>
                         <option value="Wide Mouth">Wide Mouth</option>
                         <option value="Standard Mouth">Standard Mouth</option>
                     </select>
@@ -63,7 +63,7 @@
 
                 <div class="mb-3">
                     <label class="text-dark fs-6 mb-1">Quantity</label>
-                    <input type="number" name="qty" class="form-control" required>
+                    <input type="number" min="0" name="qty" class="form-control" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 mb-2">
