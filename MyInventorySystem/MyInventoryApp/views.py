@@ -89,7 +89,7 @@ def add_bottle(request):
             current_quantity=qty
         )
 
-        return redirect('view_supplier')  
+        return redirect('view_bottles')  
 
     return render(request, 'MyInventoryApp/add_bottle.html', {
         'suppliers': suppliers
