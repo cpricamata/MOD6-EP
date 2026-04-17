@@ -1,4 +1,8 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+from decimal import Decimal
+#changes: changed type of data to prevent negative number error
+#source: https://docs.python.org/3/library/decimal.html
 
 # Create your models here.
 class Supplier(models.Model):
@@ -18,12 +22,12 @@ class Supplier(models.Model):
 class WaterBottle(models.Model):
     sku = models.CharField(max_length=10, unique=True)
     brand = models.CharField(max_length=100)
-    cost = models.DecimalField(max_digits=10, decimal_places=2)
-    size = models.CharField(max_length=100)
+    cost = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))])
+    size = models.PositiveIntegerField(max_length=100)
     mouth_size = models.CharField(max_length=50)
     color = models.CharField(max_length=50)
     supplied_by = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    current_quantity = models.IntegerField()
+    current_quantity = models.PositiveIntegerField()
 
     def __str__(self):
         return f"{self.sku}: {self.brand}, {self.mouth_size}, {self.size}, {self.color}, supplied by {self.supplied_by.name}, {self.cost} : {self.current_quantity}"

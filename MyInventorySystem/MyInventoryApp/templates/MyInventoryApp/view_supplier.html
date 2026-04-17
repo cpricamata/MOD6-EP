@@ -5,36 +5,29 @@
 {%block heading%}Suppliers{%endblock%}
 
 
-{% block navigation %}
-<ul>
-    <li><a href="{% url 'manage_account' pk=user.pk %}" > Manage Account </a></li>
-    <li><a href="{% url 'logout_view' %}" > Logout </a></li>
-    <li><a href="{% url 'add_bottles' %}" > Add waterbottle </a></li>
-</ul>
-{% endblock %}
 
+{%block content%}
 <div class="mb-3">
-    <a href="{% url 'add_bottles' %}" class="btn btn-primary">Add Water Bottles</a>
+    <a href="{% url 'add_bottle' %}" class="btn btn-primary">Add Water Bottles</a>
     <a href="{% url 'manage_account' pk=user.pk %}" class="btn btn-secondary">Manage Account</a>
     <a href="{% url 'logout_view' %}" class="btn btn-danger">Logout</a>
 </div>
-{%block content%}
 
 <table class="table table-dark table-striped columns table-bordered">
     <thead>
         <tr>
-            {%block thead_categories%}
+            
                 <th class="table-dark" scope="col"> Name </th>
                 <th class="table-dark" scope="col"> City </th>
                 <th class="table-dark" scope="col"> Country </th>
                 <th class="table-dark" scope="col"> Creation date </th>    
                 <th class="table-dark" scope="col"> Details </th>    
-            {%endblock%}
+            
 
         </tr>
     </thead>
     <tbody>
-    {%block tbody_data%}
+  
         {% for sd in s %}
             <tr>
                 <td> {{ sd.name }} </td>
@@ -45,9 +38,8 @@
 
             </tr>
         {% endfor %}
-    {%endblock%}
+    
     </tbody>
-
 </table>
 
 

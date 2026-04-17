@@ -14,7 +14,8 @@ def login_view(request):
         user = Account.objects.filter(username=username, password=password).first()
 
         if user:
-            return redirect('base')
+            request.session['user_id'] = user.pk
+            return redirect('view_supplier')
         else:
             return render(request, 'MyInventoryApp/login.html', {
                 'error': 'Invalid login'
@@ -46,8 +47,10 @@ def base(request):
     return render(request, 'MyInventoryApp/base.html')
 
 def view_supplier(request):
+    user_id = request.session.get('user_id')
+    user = Account.objects.filter(pk=user_id).first()
     suppliers = Supplier.objects.all()
-    return render(request, 'MyInventoryApp/view_supplier.html', {'s': suppliers})
+    return render(request, 'MyInventoryApp/view_supplier.html', {'s': suppliers, 'user':user})
 
 def view_bottle_details(request,pk):
     bottle = get_object_or_404(WaterBottle, pk=pk)
